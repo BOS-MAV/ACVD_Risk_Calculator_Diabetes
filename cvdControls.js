@@ -32,13 +32,12 @@ $(document).ready(function () {
     $("#TotChol").tooltip({title: "Please enter total cholesterol between 0 and 500 mg/dL", placement: "bottom", trigger: "manual"});
     $("#HDL").tooltip({title: "Please enter HDL cholesterol between 0 and 150 mg/dL", placement: "bottom", trigger: "manual"});
     $("#LDL").tooltip({title: "Please enter LDL cholesterol between 0 and 400 mg/dL", placement: "bottom", trigger: "manual"});
-    $("#fpGluc").tooltip({title: "Please enter fasting glucose between 60 and 150 mg/dL", placement: "bottom", trigger: "manual"});
-    $("#alAmint").tooltip({title: "Please enter an ALT value between 7 and 56 IU/L", placement: "bottom", trigger: "manual"});
-    $("#creatPhos").tooltip({title: "Please enter a creatinine phosphokinase value between 20 and 200 IU/L", placement: "bottom", trigger: "manual"});
-    $("#serK").tooltip({title: "Please enter a serum potassium level between 2.6 and 6 mmol/L", placement: "bottom", trigger: "manual"});
-    $("#serCreat").tooltip({title: "Please enter a serum creatinine level between 0.5 and 1.2 mg/dL", placement: "bottom", trigger: "manual"});
-    $("#urAlb").tooltip({title: "Please enter a urine albumin value between 0 and 300 mg/DL", placement: "bottom", trigger: "manual"});
+    $("#eGFR").tooltip({title: "Please enter an eGFR value greater than zero.", placement: "bottom",trigger: "manual"});
+    $("#insMark").tooltip({title: "Please choose either yes or no",placement: "bottom", trigger: "manual"});
+    $("#othmedMark").tooltip({title: "Please choose either yes or no",placement: "bottom", trigger: "manual"});
+    $("#sulfMark").tooltip({title: "Please choose either yes or no",placement: "bottom", trigger: "manual"});
     $("#A1C").tooltip({title: "Please enter an A1C value between 4.6 and 7.5 mmol/mol", placement: "bottom", trigger: "manual"});
+    $("#mcAlb").tooltip({title: "Please enter a value greater than 0", placement: "bottom", trigger: "manual"});
     $(".diabetesFields").hide();
     /*$('#myForm').on('submit', function(e){
      e.preventDefault();
@@ -49,7 +48,18 @@ $(document).ready(function () {
         var isvalidate = $("#myForm")[0].checkValidity();
         if ((isvalidate) && txtAge_Val() && bpSys_Val() && bpDia_Val() && totChol_Val() && HDL_Val() && LDL_Val()) {
             event.preventDefault();
-            $('#message').html('Your 5-year ASCVD risk is: ' + calc_risk()+"%");
+             if ($("input[name = 'Diabetes']:checked").val() === "Yes")
+             {
+                 $('#message').html('Your 5-year ASCVD risk is: ' + calc_risk()+"%"+"<br/>"
+                         +'Your MI risk is: ' +calc_MI()+"%<br/>"+
+                         "Your AIS risk is: "+calc_AIS()+"%<br/>"+
+                         "Your CVD Death risk is: "+calc_Death()+"%<br/>");
+             }
+             else
+             {
+                  $('#message').html('Your 5-year ASCVD risk is: ' + calc_risk()+"%");
+             }
+           
             $('#myModal').modal('show');
         } else
         {
@@ -143,49 +153,48 @@ $(document).ready(function () {
                                                             if ($("input[name = 'Diabetes']:checked").val() === 'Yes')
                                                             {
                                                                 /*check all diabetes fields*/
-                                                                if (!(fpGluc_Val()))
+                                                                if (!(eGFR_Val()))
                                                                 {
-                                                                    $("#fpGluc").tooltip("show");
-                                                                    $("#fpGluc").focus();
-                                                                } else
+                                                                    $("#eGFR").tooltip("show");
+                                                                    $("#eGFR").focus();
+                                                                }
+                                                                else
                                                                 {
-                                                                    $("#fpGluc").tooltip("hide");
-                                                                    if (!(alAmint_Val()))
-                                                                    {
-                                                                        $("#alAmint").tooltip("show");
-                                                                        $("#alAmint").focus();
-                                                                    } else
-                                                                    {
-                                                                        $("#alAmint").tooltip("hide");
-                                                                        if (!(creatPhos_Val()))
-                                                                        {
-                                                                            $("#creatPhos").tooltip("show");
-                                                                            $("#creatPhos").focus();
-                                                                        } else
-                                                                        {
-                                                                            $("#creatPhos").tooltip("hide");
-                                                                            if (!(serK_Val()))
-                                                                            {
-                                                                                $("#serK").tooltip("show");
-                                                                                $("#serK").focus();
-                                                                            } else
-                                                                            {
-                                                                                $("#serK").tooltip("hide");
-                                                                                if (!(serCreat_Val()))
-                                                                                {
-                                                                                    $("#serCreat").tooltip("show");
-                                                                                    $("#serCreat").focus();
-                                                                                } else
-                                                                                {
-                                                                                    $("#serCreat").tooltip("hide");
-                                                                                    if (!(urAlb_Val()))
-                                                                                    {
-                                                                                        $("#urAlb").tooltip("show");
-                                                                                        $("#urAlb").focus();
-                                                                                    } else
-                                                                                    {
-                                                                                        $("#urAlb").tooltip("hide");
-                                                                                        if (!(A1C_Val()))
+                                                                     $("#eGFR").tooltip("hide");
+                                                                     if (($("input[name = 'Insulin']:checked").val() !== 'Yes') && ($("input[name = 'Insulin']:checked").val() !== 'No'))
+                                                                     {
+                                                                         $("#insMark").tooltip("show");
+                                                                         $("#insMark").focus();
+                                                                     }
+                                                                     else
+                                                                     {
+                                                                         $("#insMark").tooltip("hide");
+                                                                         if (($("input[name = 'OtherDMeds']:checked").val() !== 'Yes') && ($("input[name = 'OtherDMeds']:checked").val() !== 'No')) 
+                                                                         {
+                                                                            $("#othmedMark").tooltip("show");
+                                                                            $("#othmedMark").focus();
+                                                                         }
+                                                                         else
+                                                                         {
+                                                                            $("#othmedMark").tooltip("hide");
+                                                                            
+                                                                            if (($("input[name = 'SulfonlyUrea']:checked").val() !== 'Yes') && ($("input[name = 'SulfonlyUrea']:checked").val() !== 'No')) 
+                                                                             {
+                                                                                $("#sulfMark").tooltip("show");
+                                                                                $("#sulfMark").focus(); 
+                                                                             }
+                                                                             else
+                                                                             {
+                                                                                 $("#sulfMark").tooltip("hide");
+                                                                                 if (!(mcAlb_val()))
+                                                                                 {
+                                                                                    $("#mcAlb").tooltip("show");
+                                                                                    $("#mcAlb").focus();  
+                                                                                 }
+                                                                                 else
+                                                                                 {
+                                                                                     $("#mcAlb").tooltip("hide");
+                                                                                     if (!(A1C_Val()))
                                                                                         {
                                                                                             $("#A1C").tooltip("show");
                                                                                             $("#A1C").focus();
@@ -193,6 +202,15 @@ $(document).ready(function () {
                                                                                         {
                                                                                             $("#A1C").tooltip("hide");
                                                                                         }
+                                                                                 }
+                                                                                 
+                                                                             }
+                                                                         }
+                                                                     }
+                                                                         
+                                                                }
+
+                                                                                        
                                                                                     }
                                                                                 }
                                                                             }
@@ -207,12 +225,10 @@ $(document).ready(function () {
                                         }
                                     }
                                 }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+                            
+                        
+                    
+             
     });
     $("#txtAge").blur(function () {
         if (txtAge_Val())
@@ -340,6 +356,7 @@ $(document).ready(function () {
         }
         $("#BP_Sys").focus();
     });
+    
     $("#BP_Sys").blur(function () {
         if (bpSys_Val())
         {
@@ -379,33 +396,99 @@ $(document).ready(function () {
        }
     });
     /*don't think that we need to check if diabetes if yes here*/
-    $("#fpGluc").blur(function () {
-        fpGluc_Val();
+   
+       $("#egfr").blur(function () {
+       if (egfr_Val())
+       {
+        egfrToolTipOn = 1;
+       }
     });
-
-    $("#alAmint").blur(function () {
-        alAmint_Val();
+   
+       $("input[name='Statin']").change(function () {
+        $("#statinMark").tooltip("hide");
+       if ($("input[name='Statin']:checked").val()==="Yes")
+        {
+            $("#statinMark").addClass("btn-selected");
+            $("#statinYGlyph").show();
+            $("#statinNGlyph").hide();            
+            $("#statinMark1").removeClass("btn-selected");
+        }
+        else
+        {
+            
+            $("#statinMark1").addClass("btn-selected");
+            $("#statinNGlyph").show();
+            $("#statinYGlyph").hide();
+            $("#statinMark").removeClass("btn-selected");
+        }
+        $("#BP_Sys").focus();
     });
-
-    $("#creatPhos").blur(function () {
-        creatPhos_Val();
-    });
-
-    $("#serK").blur(function () {
-        serK_Val();
-    });
-
-    $("#serCreat").blur(function () {
-        serCreat_Val();
-    });
-
-    $("#urAlb").blur(function () {
-        urAlb_Val();
+    $("#mcAlb").blur(function () {
+        mcAlb_Val();
     });
 
     $("#A1C").blur(function () {
         A1C_Val();
     });
+    $("input[name='Insulin']").change(function () {
+        $("#insMark").tooltip("hide");
+       if ($("input[name='Insulin']:checked").val()==="Yes")
+        {
+            $("#insMark").addClass("btn-selected");
+            $("#insYGlyph").show();
+            $("#insNGlyph").hide();            
+            $("#insMark1").removeClass("btn-selected");
+        }
+        else
+        {
+            
+            $("#insMark1").addClass("btn-selected");
+            $("#insNGlyph").show();
+            $("#insYGlyph").hide();
+            $("#insMark").removeClass("btn-selected");
+        }
+        $("#OtherDMeds").focus();
+    });
+    $("input[name='OtherDMeds']").change(function () {
+       $("#othmedMark").tooltip("hide");
+       if ($("input[name='OtherDMeds']:checked").val()==="Yes")
+        {
+            $("#othmedMark").addClass("btn-selected");
+            $("#omYGlyph").show();
+            $("#omNGlyph").hide();            
+            $("#othmedMark1").removeClass("btn-selected");
+        }
+        else
+        {
+            
+            $("#othmedMark1").addClass("btn-selected");
+            $("#omNGlyph").show();
+            $("#omYGlyph").hide();
+            $("#othmedMark").removeClass("btn-selected");
+        }
+        $("#SulfonlyUrea").focus();
+    });
+    $("input[name='SulfonlyUrea']").change(function () {
+       $("#sulfMark").tooltip("hide");
+       if ($("input[name='SulfonlyUrea']:checked").val()==="Yes")
+        {
+            $("#sulfMark").addClass("btn-selected");
+            $("#sulfYGlyph").show();
+            $("#sulfNGlyph").hide();            
+            $("#sulfMark1").removeClass("btn-selected");
+        }
+        else
+        {
+            
+            $("#sulfMark1").addClass("btn-selected");
+            $("#sulfNGlyph").show();
+            $("#sulfYGlyph").hide();
+            $("#sulfMark").removeClass("btn-selected");
+        }
+        $("#mcAlb").focus();
+    });
+    
+    
 });
 
 function txtAge_Val() {
@@ -577,111 +660,22 @@ function LDL_Val() {
         return true;
     }
 }
-function fpGluc_Val() {
-    var input = $("#fpGluc");
 
-    if (parseInt(input.val()) < 60 || parseInt(input.val()) > 150 || input.val() === "")
-    {
-
-        $("#fpGluc").tooltip("show");
-        $("#fpGluc").removeClass("valid").addClass("invalid");
-        $("#fpGluc").focus();
-        return false;
-    } else
-    {
-        $("#fpGluc").tooltip("hide");
-        $("#fpGluc").removeClass("invalid").addClass("valid");
-        return true;
-    }
-}
-
-function alAmint_Val() {
-    var input = $("#alAmint");
-
-    if (parseInt(input.val()) < 7 || parseInt(input.val()) > 56 || input.val() === "")
-    {
-
-        $("#alAmint").tooltip("show");
-        $("#alAmint").removeClass("valid").addClass("invalid");
-        $("#alAmint").focus();
-        return false;
-    } else
-    {
-        $("#alAmint").tooltip("hide");
-        $("#alAmint").removeClass("invalid").addClass("valid");
-        return true;
-    }
-}
-
-function creatPhos_Val() {
-    var input = $("#creatPhos");
-
-    if (parseInt(input.val()) < 20 || parseInt(input.val()) > 200 || input.val() === "")
-    {
-
-        $("#creatPhos").tooltip("show");
-        $("#creatPhos").removeClass("valid").addClass("invalid");
-        $("#creatPhos").focus();
-        return false;
-    } else
-    {
-        $("#creatPhos").tooltip("hide");
-        $("#creatPhos").removeClass("invalid").addClass("valid");
-        return true;
-    }
-}
-
-function serK_Val() {
-    var input = $("#serK");
-
-    if (parseFloat(input.val()) < 2.6 || parseFloat(input.val()) > 6 || input.val() === "")
-    {
-
-        $("#serK").tooltip("show");
-        $("#serK").removeClass("valid").addClass("invalid");
-        $("#serK").focus();
-        return false;
-    } else
-    {
-        $("#serK").tooltip("hide");
-        $("#serK").removeClass("invalid").addClass("valid");
-        return true;
-    }
-}
-
-function serCreat_Val() {
-    var input = $("#serCreat");
-
-    if (parseFloat(input.val()) < 0.5 || parseFloat(input.val()) > 1.2 || input.val() === "")
-    {
-
-        $("#serCreat").tooltip("show");
-        $("#serCreat").removeClass("valid").addClass("invalid");
-        $("#serCreat").focus();
-        return false;
-    } else
-    {
-        $("#serCreat").tooltip("hide");
-        $("#serCreat").removeClass("invalid").addClass("valid");
-        return true;
-    }
-}
-
-function urAlb_Val()
+function mcAlb_Val()
 {
-    var input = $("#urAlb");
+    var input = $("mcAlb");
 
     if (parseInt(input.val()) < 0 || parseInt(input.val()) > 300 || input.val() === "")
     {
 
-        $("#urAlb").tooltip("show");
-        $("#urAlb").removeClass("valid").addClass("invalid");
-        $("#urAlb").focus();
+        $("#mcAlb").tooltip("show");
+        $("#mcAlb").removeClass("valid").addClass("invalid");
+        $("#mcAlb").focus();
         return false;
     } else
     {
-        $("#urAlb").tooltip("hide");
-        $("#urAlb").removeClass("invalid").addClass("valid");
+        $("#mcAlb").tooltip("hide");
+        $("#mcAlb").removeClass("invalid").addClass("valid");
         return true;
     }
 }
