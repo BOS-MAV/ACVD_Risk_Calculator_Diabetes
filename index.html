@@ -181,62 +181,58 @@
                         <div class ="row diabetesFields">
                             <div class ="col-sm-4 col-med-4 col-lg-4">
                                 <div class="btn-group" data-toggle="buttons" >
-                                    <label class = "topLabel1">Fasting Plasma Glucose<br/>(mg/dL)</label>
+                                    <label class = "topLabel1"><br/><br/>eGFR</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn text-input">
-                                        <input type = "text" id = "fpGluc"  size = "4" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class ="diabetesFields" />
+                                        <input type = "text" id = "eGFR"  size = "4" maxlength ="4" oninput="this.value=this.value.replace(/[^0-9.]/g,'');" class ="diabetesFields"/>
                                     </label>
                                 </div>
                             </div>
-                            <div class ="col-sm-4 col-med-4 col-lg-4">
-                                <div class="btn-group" data-toggle="buttons" >
-                                    <label class = "topLabel1">Alanine Aminotransferase<br/>(IU/L)</label>
+                            <div class ="col-sm-3 col-med-4 col-lg-4">
+                                <div class="btn-group colors" data-toggle="buttons" id ="insu" >
+                                    <label class = "topLabel"><br/>Do you have currently<br/> take insulin?</label>
                                     <div style="clear: both;"></div>
-                                    <label class="btn text-input">
-                                        <input type = "text" id = "alAmint"  size = "4" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class ="diabetesFields"/>
+                                    <label class="btn btn-primary btn-sm" id = "insMark" id = "diab1"> 
+                                        <span class = "glyphicon glyphicon-check" id = "insYGlyph" style="display:none"></span>
+                                        <input type="radio" name="Insulin" value="Yes"  required > Yes
+                                    </label>
+                                    <label class="btn btn-primary btn-sm" id = "insMark1">
+                                        <span class = "glyphicon glyphicon-check" id = "insNGlyph" style="display:none"></span>
+                                        <input type="radio" name="Insulin" value="No"  required > No
                                     </label>
                                 </div>
                             </div>
-                            <div class ="col-sm-4 col-med-4 col-lg-4">
-                                <div class="btn-group" data-toggle="buttons" >
-                                    <label class = "topLabel">Creatinine phosphokinase<br/>(IU/L)</label>
+                             <div class ="col-sm-3 col-med-4 col-lg-4">
+                                <div class="btn-group colors" data-toggle="buttons" id ="otherDiaMed" >
+                                    <label class = "topLabel">Do you currently<br/> take other non-insulin<br/> diabetic oral medications?</label>
                                     <div style="clear: both;"></div>
-                                    <label class="btn text-input">
-                                        <input type = "text" id = "creatPhos"  size = "4" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class ="diabetesFields"/>
+                                    <label class="btn btn-primary btn-sm" id = "othmedMark" id = "othmed"> 
+                                        <span class = "glyphicon glyphicon-check" id = "omYGlyph" style="display:none"></span>
+                                        <input type="radio" name="OtherDMeds" value="Yes"  required > Yes
                                     </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class ="row diabetesFields">
-                            <div class ="col-sm-4 col-med-4 col-lg-4">
-                                <div class="btn-group" data-toggle="buttons" >
-                                    <label class = "topLabel1">Egfr<br/>(mmol/L)</label>
-                                    <div style="clear: both;"></div>
-                                    <label class="btn text-input">
-                                        <input type = "text" id = "Egfr"  size = "4" maxlength ="4" oninput="this.value=this.value.replace(/[^0-9.]/g,'');" class ="diabetesFields"/>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class ="col-sm-4 col-med-4 col-lg-4">
-                                <div class="btn-group" data-toggle="buttons" >
-                                    <label class = "topLabel1">Insulin<br/>(mg/dL)</label>
-                                    <div style="clear: both;"></div>
-                                    <label class="btn text-input">
-                                        <input type = "text" id = "insulin"  size = "4" maxlength ="4" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"class ="diabetesFields" />
-                                    </label>
-                                </div>
-                            </div>
-                            <div class ="row diabetesFields">
-                            <div class ="col-sm-4 col-med-4 col-lg-4">
-                                <div class="btn-group" data-toggle="buttons" >
-                                    <label class = "topLabel1">Other Diabetes Meds<br/>(mmol/mol)</label>
-                                    <div style="clear: both;"></div>
-                                    <label class="btn text-input">
-                                        <input type = "text" id = "A1C"  size = "4" maxlength ="4" oninput="this.value=this.value.replace(/[^0-9.]/g,'');" class ="diabetesFields"/>
+                                    <label class="btn btn-primary btn-sm" id = "othmedMark1">
+                                        <span class = "glyphicon glyphicon-check" id = "omNGlyph" style="display:none"></span>
+                                        <input type="radio" name="OtherDMeds" value="No"  required > No
                                     </label>
                                 </div>
                             </div>
                         </div>
+                        <br/>
+                       <div class ="row diabetesFields">
+                                 <div class ="col-sm-3 col-med-4 col-lg-4">
+                                <div class="btn-group colors" data-toggle="buttons" id ="sulf" >
+                                    <label class = "topLabel">Sulfonylurea</label>
+                                    <div style="clear: both;"></div>
+                                    <label class="btn btn-primary btn-sm" id = "sulfMark" id = "sulfonyl">
+                                        <span class = "glyphicon glyphicon-check" id = "sulfYGlyph" style="display:none"></span>
+                                        <input type="radio" name="SulfonlyUrea" value="Yes"  required > Yes
+                                    </label>
+                                    <label class="btn btn-primary btn-sm" id = "sulfMark1">
+                                        <span class = "glyphicon glyphicon-check" id = "sulfNGlyph" style="display:none"></span>
+                                        <input type="radio" name="SulfonlyUrea" value="No"  required > No
+                                    </label>
+                                </div>
+                            </div>
                         
                             <div class ="col-sm-4 col-med-4 col-lg-4">
                                 <div class="btn-group" data-toggle="buttons" >
@@ -248,9 +244,7 @@
                                 </div>
                             </div>
 
-                        </div>
-                        <div class ="row diabetesFields">
-                            <div class ="col-sm-4 col-med-4 col-lg-4">
+                         <div class ="col-sm-4 col-med-4 col-lg-4">
                                 <div class="btn-group" data-toggle="buttons" >
                                     <label class = "topLabel1">A1C<br/>(mmol/mol)</label>
                                     <div style="clear: both;"></div>
