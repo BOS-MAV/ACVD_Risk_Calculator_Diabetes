@@ -29,9 +29,9 @@ $(document).ready(function () {
     $("#hyperMark").tooltip({title: "Please choose either yes or no", placement: "bottom", trigger: "manual"});
     $("#statinMark").tooltip({title: "Please choose either yes or no", placement: "bottom", trigger: "manual"});
     $("#BP_Dia").tooltip({title: "Please enter a diastolic blood pressure between 50 and 180 mm HG", placement: "right", trigger: "manual"});
-    $("#TotChol").tooltip({title: "Please enter total cholesterol between 0 and 500 mg/dL", placement: "bottom", trigger: "manual"});
-    $("#HDL").tooltip({title: "Please enter HDL cholesterol between 0 and 150 mg/dL", placement: "bottom", trigger: "manual"});
-    $("#LDL").tooltip({title: "Please enter LDL cholesterol between 0 and 400 mg/dL", placement: "bottom", trigger: "manual"});
+    $("#TotChol").tooltip({title: "Please enter total cholesterol between 1 and 500 mg/dL", placement: "bottom", trigger: "manual"});
+    $("#HDL").tooltip({title: "Please enter HDL cholesterol between 1 and 150 mg/dL", placement: "bottom", trigger: "manual"});
+    $("#LDL").tooltip({title: "Please enter LDL cholesterol between 1 and 400 mg/dL", placement: "bottom", trigger: "manual"});
     $("#eGFR").tooltip({title: "Please enter an eGFR value greater than zero.", placement: "bottom",trigger: "manual"});
     $("#insMark").tooltip({title: "Please choose either yes or no",placement: "bottom", trigger: "manual"});
     $("#othmedMark").tooltip({title: "Please choose either yes or no",placement: "bottom", trigger: "manual"});
@@ -46,7 +46,13 @@ $(document).ready(function () {
      });*/
     $('#sub').on('click', function (event) {
         var isvalidate = $("#myForm")[0].checkValidity();
-        if ((isvalidate) && txtAge_Val() && bpSys_Val() && bpDia_Val() && totChol_Val() && HDL_Val() && LDL_Val()) {
+        var diabFlds = false;
+        if ($("input[name = 'Diabetes']:checked").val() === "Yes")
+        {
+            diabFlds = true;
+        }   
+        if ((isvalidate) && ((!diabFlds && txtAge_Val() && bpSys_Val() && bpDia_Val() && totChol_Val() && HDL_Val() && LDL_Val()) 
+                || (diabFlds && txtAge_Val() && bpSys_Val() && bpDia_Val() && totChol_Val() && HDL_Val() && LDL_Val() && mcAlb_Val() && A1C_Val() && eGFR_Val()))) {
             event.preventDefault();
              if ($("input[name = 'Diabetes']:checked").val() === "Yes")
              {
@@ -186,7 +192,7 @@ $(document).ready(function () {
                                                                              else
                                                                              {
                                                                                  $("#sulfMark").tooltip("hide");
-                                                                                 if (!(mcAlb_val()))
+                                                                                 if (!(mcAlb_Val()))
                                                                                  {
                                                                                     $("#mcAlb").tooltip("show");
                                                                                     $("#mcAlb").focus();  
@@ -578,7 +584,7 @@ function bpDia_Val() {
 function totChol_Val() {
     var input = $("#TotChol");
 
-    if (parseInt(input.val()) < 0 || parseInt(input.val()) > 500 || input.val() === "")
+    if (parseInt(input.val()) < 1 || parseInt(input.val()) > 500 || input.val() === "")
     {
 
         if (totCholToolTipOn === 1)
@@ -607,7 +613,7 @@ function totChol_Val() {
 function HDL_Val() {
     var input = $("#HDL");
 
-    if (parseInt(input.val()) < 0 || parseInt(input.val()) > 150 || input.val() === "")
+    if (parseInt(input.val()) < 1 || parseInt(input.val()) > 150 || input.val() === "")
     {
 
         if (HDLToolTipOn  ===1) 
@@ -636,7 +642,7 @@ function HDL_Val() {
 function LDL_Val() {
     var input = $("#LDL");
 
-    if (parseInt(input.val()) < 0 || parseInt(input.val()) > 400 || input.val() === "")
+    if (parseInt(input.val()) < 1 || parseInt(input.val()) > 400 || input.val() === "")
     {
 
         if (LDLToolTipOn ===1)
@@ -663,9 +669,9 @@ function LDL_Val() {
 
 function mcAlb_Val()
 {
-    var input = $("mcAlb");
+    var input = $("#mcAlb");
 
-    if (parseInt(input.val()) < 0 || parseInt(input.val()) > 300 || input.val() === "")
+    if (parseFloat(input.val()) < 1 || parseFloat(input.val()) > 300 || input.val() === "")
     {
 
         $("#mcAlb").tooltip("show");
@@ -694,6 +700,23 @@ function A1C_Val() {
     {
         $("#A1C").tooltip("hide");
         $("#A1C").removeClass("invalid").addClass("valid");
+        return true;
+    }
+}
+
+function eGFR_Val() {
+    var input = $("#eGFR");
+    if (parseFloat(input.val()) < 1 || parseFloat(input.val()) > 300 || input.val() === "")
+    {
+
+        $("#eGFR").tooltip("show");
+        $("#eGFR").removeClass("valid").addClass("invalid");
+        $("#eGFR").focus();
+        return false;
+    } else
+    {
+        $("#eGFR").tooltip("hide");
+        $("#eGFR").removeClass("invalid").addClass("valid");
         return true;
     }
 }
