@@ -104,7 +104,7 @@ function calc_ASCVD()
                         a1c, a1cWeight,egfr,egfrWeight,insulin, insulinWeight,sulfonyl, sulfonylWeight,otherDiab, otherDiabWeight,microAlb, 
                         microAlbWeight;
                 age = parseInt($("#txtAge").val());
-                ageWeight = Math.log(age)*18.94963
+                ageWeight = Math.log(age)*18.9496
                 ageLogSQWeight = Math.log(age)*Math.log(age)*-1.82065;
                 if ($("input[name = 'Sex']:checked").val() === "Male")
                     sex = 0;
@@ -118,7 +118,7 @@ function calc_ASCVD()
                     race = 1;
                 else
                     race = 0;
-                raceWeight = race * 0.00349;
+                raceWeight = race * 0.003490576;
                 if ($("input[name = 'Smoker']:checked").val() === "Yes")
                     smoker = 1;
                 else
@@ -139,7 +139,7 @@ function calc_ASCVD()
                 bpSysbpAgeWeight = Math.log(age)*Math.log(bpSys)*bpMed*-0.14554;
                 ageSmokeWeight = Math.log(age)*smoker*-0.92560;        
                 if ($("input[name = 'Statin']:checked").val() === "Yes")
-                    statinWeight = -0.03373;
+                    statinWeight = -0.033734;
                 else
                     statinWeight = 0;
                 
@@ -153,7 +153,7 @@ function calc_ASCVD()
                         insulin = 0;
                     else
                         insulin = 1;
-                    insulinWeight = insulin * 0.281;
+                    insulinWeight = insulin * 0.28100;
                     if ($("input[name = 'SulfonlyUrea']:checked").val() === "No")
                         sulfonyl = 0;
                     else
@@ -163,9 +163,9 @@ function calc_ASCVD()
                         otherDiab = 0;
                     else
                         otherDiab = 1;
-                    otherDiabWeight = otherDiab * -0.08086;
+                    otherDiabWeight = otherDiab * -0.080862;
                     microAlb = parseInt($("#mcAlb").val());
-                    microAlbWeight = microAlb * 0.00226;   
+                    microAlbWeight = microAlb * 0.002264563;   
                 }
                 else
                 {
@@ -199,7 +199,7 @@ function calc_MI()
                         a1c, a1cWeight,egfr,egfrWeight,insulin, insulinWeight,sulfonyl, sulfonylWeight,otherDiab, otherDiabWeight,microAlb, 
                         microAlbWeight;
                 age = parseInt($("#txtAge").val());
-                ageWeight = Math.log(age)*33.59165;
+                ageWeight = Math.log(age)*33.5917;
                 ageLogSQWeight = Math.log(age)*Math.log(age)*-3.95840;
                 if ($("input[name = 'Sex']:checked").val() === "Male")
                     sex = 0;
@@ -234,7 +234,7 @@ function calc_MI()
                 bpSysbpAgeWeight = Math.log(age)*Math.log(bpSys)*bpMed*-0.21101;
                 ageSmokeWeight = Math.log(age)*smoker*-0.47557;        
                 if ($("input[name = 'Statin']:checked").val() === "Yes")
-                    statinWeight = 0.03800;
+                    statinWeight = 0.037998;
                 else
                     statinWeight = 0;
                 
@@ -243,7 +243,7 @@ function calc_MI()
                     a1c = parseInt($("#A1C").val());
                     a1cWeight = Math.log(a1c)*0.86555;
                     egfr = parseInt($("#eGFR").val());
-                    egfrWeight = Math.log(egfr)*-0.35818;
+                    egfrWeight = Math.log(egfr)*-0.43044;
                     if ($("input[name = 'Insulin']:checked").val() === "No")
                         insulin = 0;
                     else
@@ -253,14 +253,14 @@ function calc_MI()
                         sulfonyl = 0;
                     else
                         sulfonyl = 1;
-                    sulfonylWeight = sulfonyl * 0.08226;
+                    sulfonylWeight = sulfonyl * 0.082256;
                     if ($("input[name = 'OtherDMeds']:checked").val() === "No")
                         otherDiab = 0;
                     else
                         otherDiab = 1;
-                    otherDiabWeight = otherDiab * -0.05921;
+                    otherDiabWeight = otherDiab * -0.059207;
                     microAlb = parseInt($("#mcAlb").val());
-                    microAlbWeight = microAlb * 0.00192;   
+                    microAlbWeight = microAlb * 0.001920131;   
                 }
                 else
                 {
@@ -294,7 +294,7 @@ function calc_MI()
                         a1c, a1cWeight,egfr,egfrWeight,insulin, insulinWeight,sulfonyl, sulfonylWeight,otherDiab, otherDiabWeight,microAlb, 
                         microAlbWeight;
                 age = parseInt($("#txtAge").val());
-                ageWeight = Math.log(age)*25.7559;
+                ageWeight = Math.log(age)*25.7558;
                 ageLogSQWeight = Math.log(age)*Math.log(age)*-2.67664;
                 if ($("input[name = 'Sex']:checked").val() === "Male")
                     sex = 0;
@@ -329,7 +329,7 @@ function calc_MI()
                 bpSysbpAgeWeight = Math.log(age)*Math.log(bpSys)*bpMed*-0.18904;
                 ageSmokeWeight = Math.log(age)*smoker*-1.01281;        
                 if ($("input[name = 'Statin']:checked").val() === "Yes")
-                    statinWeight = -0.05362;
+                    statinWeight = -0.053618;
                 else
                     statinWeight = 0;
                 
@@ -348,14 +348,14 @@ function calc_MI()
                         sulfonyl = 0;
                     else
                         sulfonyl = 1;
-                    sulfonylWeight = sulfonyl * 0.08048;
+                    sulfonylWeight = sulfonyl * 0.080476;
                     if ($("input[name = 'OtherDMeds']:checked").val() === "No")
                         otherDiab = 0;
                     else
                         otherDiab = 1;
-                    otherDiabWeight = otherDiab * -0.07473;
+                    otherDiabWeight = otherDiab * -0.074728;
                     microAlb = parseInt($("#mcAlb").val());
-                    microAlbWeight = microAlb * 0.00223;   
+                    microAlbWeight = microAlb * 0.002229916;   
                 }
                 else
                 {
@@ -389,7 +389,7 @@ function calc_MI()
                         a1c, a1cWeight,egfr,egfrWeight,insulin, insulinWeight,sulfonyl, sulfonylWeight,otherDiab, otherDiabWeight,microAlb, 
                         microAlbWeight;
                 age = parseInt($("#txtAge").val());
-                ageWeight = Math.log(age)*-15.58464;
+                ageWeight = Math.log(age)*-15.5846;
                 ageLogSQWeight = Math.log(age)*Math.log(age)*3.01077;
                 if ($("input[name = 'Sex']:checked").val() === "Male")
                     sex = 0;
@@ -403,7 +403,7 @@ function calc_MI()
                     race = 1;
                 else
                     race = 0;
-                raceWeight = race * 0.01697;
+                raceWeight = race * 0.016973;
                 if ($("input[name = 'Smoker']:checked").val() === "Yes")
                     smoker = 1;
                 else
@@ -411,7 +411,7 @@ function calc_MI()
                 smokerWeight = smoker * 3.06123;
                 totchl = parseInt($("#TotChol").val());
                 totchlWeight = Math.log(totchl)*0.40314;
-                chlAgeWeight = Math.log(totchl)*Math.log(age)*-0.00932;
+                chlAgeWeight = Math.log(totchl)*Math.log(age)*-0.009322967;
                 hdlc=parseInt($("#HDL").val());
                 hdlcWeight = Math.log(hdlc) * 5.91861;
                 ageHdlWeight = Math.log(hdlc)*Math.log(age)*-1.44213;
@@ -421,7 +421,7 @@ function calc_MI()
                     bpMed = 1;
                 bpSys = parseInt($("#BP_Sys").val());
                 bpSysbpMedWeight = Math.log(bpSys)*bpMed*-0.13179;
-                bpSysbpAgeWeight = Math.log(age)*Math.log(bpSys)*bpMed*0.03738;
+                bpSysbpAgeWeight = Math.log(age)*Math.log(bpSys)*bpMed*0.0373375;
                 ageSmokeWeight = Math.log(age)*smoker*-0.76306;        
                 if ($("input[name = 'Statin']:checked").val() === "Yes")
                     statinWeight = -0.16998;
@@ -450,7 +450,7 @@ function calc_MI()
                         otherDiab = 1;
                     otherDiabWeight = otherDiab * -0.13477;
                     microAlb = parseInt($("#mcAlb").val());
-                    microAlbWeight = microAlb * 0.00306;   
+                    microAlbWeight = microAlb * 0.003061906;   
                 }
                 else
                 {
@@ -464,7 +464,7 @@ function calc_MI()
                  xbeta = ageWeight + ageLogSQWeight+sexWeight + raceWeight + smokerWeight + totchlWeight+ chlAgeWeight+ hdlcWeight+ageHdlWeight+
                          bpSysbpMedWeight+bpSysbpAgeWeight+ageSmokeWeight+ statinWeight+ a1cWeight+egfrWeight+ insulinWeight+sulfonylWeight+
                          otherDiabWeight+microAlbWeight;
-                eXbeta = Math.exp(xbeta+12.3901);
+                eXbeta = Math.exp(xbeta-12.3901);
                 risk = 1 - Math.pow(0.98686,eXbeta);
                 return numberFormat(risk*100,2);
                 }   
