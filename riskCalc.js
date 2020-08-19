@@ -146,7 +146,7 @@ function calc_ASCVD()
                 if ($("input[name = 'Diabetes']:checked").val() === "Yes")
                 {
                     a1c = parseInt($("#A1C").val());
-                    a1cWeight = Math.log(a1c)*0.92618;
+                    a1cWeight = Math.log(a1c/100)*0.92618;
                     egfr = parseInt($("#eGFR").val());
                     egfrWeight = Math.log(egfr)*-0.35818;
                     if ($("input[name = 'Insulin']:checked").val() === "No")
@@ -241,7 +241,7 @@ function calc_MI()
                 if ($("input[name = 'Diabetes']:checked").val() === "Yes")
                 {
                     a1c = parseInt($("#A1C").val());
-                    a1cWeight = Math.log(a1c)*0.86555;
+                    a1cWeight = Math.log(a1c/100)*0.86555;
                     egfr = parseInt($("#eGFR").val());
                     egfrWeight = Math.log(egfr)*-0.43044;
                     if ($("input[name = 'Insulin']:checked").val() === "No")
