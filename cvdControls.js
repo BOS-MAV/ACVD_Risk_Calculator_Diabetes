@@ -36,7 +36,7 @@ $(document).ready(function () {
     $("#insMark").tooltip({title: "Please choose either yes or no",placement: "bottom", trigger: "manual"});
     $("#othmedMark").tooltip({title: "Please choose either yes or no",placement: "bottom", trigger: "manual"});
     $("#sulfMark").tooltip({title: "Please choose either yes or no",placement: "bottom", trigger: "manual"});
-    $("#A1C").tooltip({title: "Please enter an A1C value between 4.6 and 7.5 mmol/mol", placement: "bottom", trigger: "manual"});
+    $("#A1C").tooltip({title: "Please enter an A1C value between 1 and 100%", placement: "bottom", trigger: "manual"});
     $("#mcAlb").tooltip({title: "Please enter a value greater than 0", placement: "bottom", trigger: "manual"});
     $(".diabetesFields").hide();
     /*$('#myForm').on('submit', function(e){
@@ -56,7 +56,7 @@ $(document).ready(function () {
             event.preventDefault();
              if ($("input[name = 'Diabetes']:checked").val() === "Yes")
              {
-                 $('#message').html('Your 5-year ASCVD risk is: ' + calc_risk()+"%"+"<br/>"
+                 $('#message').html('Your 5-year ASCVD risk is: ' + calc_ASCVD()+"%"+"<br/>"
                          +'Your MI risk is: ' +calc_MI()+"%<br/>"+
                          "Your AIS risk is: "+calc_AIS()+"%<br/>"+
                          "Your CVD Death risk is: "+calc_Death()+"%<br/>");
