@@ -689,7 +689,7 @@ function mcAlb_Val()
 function A1C_Val() {
     var input = $("#A1C");
 
-    if (parseFloat(input.val()) < 4.6 || parseFloat(input.val()) > 7.5 || input.val() === "")
+    if (parseFloat(input.val()) < 1 || parseFloat(input.val()) > 100 || input.val() === "")
     {
 
         $("#A1C").tooltip("show");
