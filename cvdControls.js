@@ -671,7 +671,7 @@ function mcAlb_Val()
 {
     var input = $("#mcAlb");
 
-    if (parseFloat(input.val()) < 1 || parseFloat(input.val()) > 300 || input.val() === "")
+    if (parseFloat(input.val()) < 0 || parseFloat(input.val()) > 400 || input.val() === "")
     {
 
         $("#mcAlb").tooltip("show");
@@ -706,7 +706,7 @@ function A1C_Val() {
 
 function eGFR_Val() {
     var input = $("#eGFR");
-    if (parseFloat(input.val()) < 1 || parseFloat(input.val()) > 300 || input.val() === "")
+    if (parseFloat(input.val()) < 1 || parseFloat(input.val()) > 210 || input.val() === "")
     {
 
         $("#eGFR").tooltip("show");
