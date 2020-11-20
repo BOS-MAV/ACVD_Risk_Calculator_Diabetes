@@ -421,7 +421,7 @@ function calc_MI()
                     bpMed = 1;
                 bpSys = parseInt($("#BP_Sys").val());
                 bpSysbpMedWeight = Math.log(bpSys)*bpMed*-0.13179;
-                bpSysbpAgeWeight = Math.log(age)*Math.log(bpSys)*bpMed*0.0373375;
+                bpSysbpAgeWeight = Math.log(age)*Math.log(bpSys)*bpMed*0.037375;
                 ageSmokeWeight = Math.log(age)*smoker*-0.76306;        
                 if ($("input[name = 'Statin']:checked").val() === "Yes")
                     statinWeight = -0.16998;
