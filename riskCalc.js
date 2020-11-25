@@ -112,8 +112,6 @@ function calc_ASCVD()
                     sex = 1;
                 sexWeight = sex * -0.21382
                 race_t = $("input[name = 'Race']:checked").val();
-                    alert(race_t);
-                alert(race_t==='AfrAm');
                 if (race_t === 'White')
                     race = 0;
                 else if (race_t === 'AfrAm')
