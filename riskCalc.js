@@ -36,7 +36,6 @@ function calc_risk() {
                     sex = 1;
                 sexWeight = sex * -0.44487;
                 race_t = $("input[name = 'Race']:checked").val();
-                alert(race_t);
                 if (race_t === 'White')
                     race = 0;
                 else if (race_t === 'African American')
@@ -113,6 +112,7 @@ function calc_ASCVD()
                     sex = 1;
                 sexWeight = sex * -0.21382
                 race_t = $("input[name = 'Race']:checked").val();
+                    alert(race_t);
                 if (race_t === 'White')
                     race = 0;
                 else if (race_t === 'African American')
