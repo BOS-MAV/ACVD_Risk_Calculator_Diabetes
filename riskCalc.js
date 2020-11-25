@@ -119,7 +119,7 @@ function calc_ASCVD()
                 else
                     race = 0;
                 raceWeight = race * 0.003490576;
-                console.log(raceWeight);
+                alert(raceWeight);
                 if ($("input[name = 'Smoker']:checked").val() === "Yes")
                     smoker = 1;
                 else
