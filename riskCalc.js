@@ -38,7 +38,7 @@ function calc_risk() {
                 race_t = $("input[name = 'Race']:checked").val();
                 if (race_t === 'White')
                     race = 0;
-                else if (race_t === 'African American')
+                else if (race_t === 'AfrAm')
                     race = 1;
                 else
                     race = 0;
@@ -115,7 +115,7 @@ function calc_ASCVD()
                     alert(race_t);
                 if (race_t === 'White')
                     race = 0;
-                else if (race_t === 'African American')
+                else if (race_t === 'AfrAm')
                     race = 1;
                 else
                     race = 0;
@@ -211,7 +211,7 @@ function calc_MI()
                 race_t = $("input[name = 'Race']:checked").val();
                 if (race_t === 'White')
                     race = 0;
-                else if (race_t === 'African American')
+                else if (race_t === 'AfrAm')
                     race = 1;
                 else
                     race = 0;
@@ -306,7 +306,7 @@ function calc_MI()
                 race_t = $("input[name = 'Race']:checked").val();
                 if (race_t === 'White')
                     race = 0;
-                else if (race_t === 'African American')
+                else if (race_t === 'AfrAm')
                     race = 1;
                 else
                     race = 0;
@@ -401,7 +401,7 @@ function calc_MI()
                 race_t = $("input[name = 'Race']:checked").val();
                 if (race_t === 'White')
                     race = 0;
-                else if (race_t === 'African American')
+                else if (race_t === 'AfrAm')
                     race = 1;
                 else
                     race = 0;
