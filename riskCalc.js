@@ -28,6 +28,18 @@ function calc_risk() {
                 var age, age5,age5Weight, sex, sexWeight,race, race_t, raceWeight,diabetes, diabetesWeight, smoker, smokerWeight, hypertension, hypertension_t, statin, statin_t, systolic, diastolic,
                         totchl, hdl, ldl;
                 age = parseInt($("#txtAge").val());
+                 // break out age by categories to compute weight
+                if (age >= 18 && age <= 44) {
+                    ageCat = 1;
+                } else if (age <= 54) {
+                    ageCat = 2;
+                } else if (age <= 64) {
+                    ageCat = 3;
+                } else if (age <= 74) {
+                    ageCat = 4;
+                } else if (age >= 75) {
+                    ageCat = 5;
+                }
                 age5 = age/5;
                 age5Weight = age5*.18860;
                 if ($("input[name = 'Sex']:checked").val() === "Male")
@@ -38,10 +50,14 @@ function calc_risk() {
                 race_t = $("input[name = 'Race']:checked").val();
                 if (race_t === 'White')
                     race = 0;
+                    raceDesc = 'White';
                 else if (race_t === 'AfrAm')
                     race = 1;
+                    raceDesc = 'Black'; 
                 else
                     race = 0;
+                    raceDesc = 'White';
+                
                 raceWeight = race * 0.19447;
                 if ($("input[name = 'Diabetes']:checked").val() === "Yes")
                     diabetes = 1;
@@ -53,15 +69,23 @@ function calc_risk() {
                 else
                     smoker = 0;
                 smokerWeight = smoker * 0.23196;
-                if (parseInt($("#TotChol").val()) > 150 && parseInt($("#TotChol").val()) < 201)
+                  if ($("#TotChol").val() === "") {
+                    marker = sex_t.trim().toLowerCase() + raceDesc,trim().toLowerCase() + ageCat;
+                    console.log(marker);
+                    totchlVal = avgLabs[marker].measure[measureEnum.AVGCHL];
+                } else {
+                    totChlVal = parseFloat($("#TotChol").val());
+                }
+                if (totChlVal > 150 && totChlVal < 201)
                 {
                     totchl = 0.00575;
                 }
-                else if (parseInt($("#TotChol").val()) > 200 && parseInt($("#TotChol").val()) < 251)
+    
+                else if (totChlVal > 200 && totChlVal < 251)
                 {
                     totchl = 0.14601;
                 }
-                else if (parseInt($("#TotChol").val()) > 250)
+                else if (totChlVal > 250)
                 {
                     totchl = 0.45042;
                 }
@@ -69,10 +93,20 @@ function calc_risk() {
                 {
                     totchl = 0;
                 }
-                hdlc=parseInt($("#HDL").val());
+                hdlc = parseInt($("#HDL").val());
+                if ($("#HDL").val() === "") {
+                    marker = sex_t.trim().toLowerCase() + raceDesc,trim().toLowerCase() + ageCat;
+                    console.log(marker);
+                    hdlc = avgLabs[marker].measure[measureEnum.AVGHDL];
+                } 
                 hdlc10 = hdlc/10;
                 hdlcWeight = hdlc10 * -0.07217;
                 bpSys = parseInt($("#BP_Sys").val());
+                if ($("#BP_Sys").val() === "") {
+                    marker = sex_t.trim().toLowerCase() + raceDesc,trim().toLowerCase() + ageCat;
+                    console.log(marker);
+                    bpSys = avgLabs[marker].measure[measureEnum.AVGSYS];
+                } 
                 bpSys10 = bpSys/10;
                 bpSysWeight = bpSys10*0.08816;
                 if ($("input[name = 'Hypertension']:checked").val() === "No")
@@ -104,6 +138,18 @@ function calc_ASCVD()
                         a1c, a1cWeight,egfr,egfrWeight,insulin, insulinWeight,sulfonyl, sulfonylWeight,otherDiab, otherDiabWeight,microAlb, 
                         microAlbWeight;
                 age = parseInt($("#txtAge").val());
+                                 // break out age by categories to compute weight
+                if (age >= 18 && age <= 44) {
+                    ageCat = 1;
+                } else if (age <= 54) {
+                    ageCat = 2;
+                } else if (age <= 64) {
+                    ageCat = 3;
+                } else if (age <= 74) {
+                    ageCat = 4;
+                } else if (age >= 75) {
+                    ageCat = 5;
+                }
                 ageWeight = Math.log(age)*18.9496
                 ageLogSQWeight = Math.log(age)*Math.log(age)*-1.82065;
                 if ($("input[name = 'Sex']:checked").val() === "Male")
@@ -112,12 +158,20 @@ function calc_ASCVD()
                     sex = 1;
                 sexWeight = sex * -0.21382
                 race_t = $("input[name = 'Race']:checked").val();
-                if (race_t === 'White')
+                if (race_t === 'White') {
                     race = 0;
-                else if (race_t === 'AfrAm')
+                    raceDesc = 'White';
+                }
+                else if (race_t === 'AfrAm') {
                     race = 1;
+                    raceDesc = 'Black';
+                }
                 else
+                {
                     race = 0;
+                    raceDesc = 'White';
+                }
+                //stop here 05-15
                 raceWeight = race * 0.003490576;
                 if ($("input[name = 'Smoker']:checked").val() === "Yes")
                     smoker = 1;
