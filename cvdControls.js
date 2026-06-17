@@ -148,24 +148,14 @@ $(document).ready(function () {
       diabFlds = true;
     }
     if (
-      (isvalidate &&
-        !diabFlds &&
-        txtAge_Val() &&
-        bpSys_Val(true) &&
-        bpDia_Val(true) &&
-        totChol_Val(true) &&
-        HDL_Val(true) &&
-        LDL_Val(true)) ||
-      (diabFlds &&
-        txtAge_Val() &&
-        bpSys_Val(true) &&
-        bpDia_Val(true) &&
-        totChol_Val(true) &&
-        HDL_Val(true) &&
-        LDL_Val(true) &&
-        mcAlb_Val(true) &&
-        A1C_Val(true) &&
-        eGFR_Val(true))
+      isvalidate &&
+      txtAge_Val() &&
+      bpSys_Val(true) &&
+      bpDia_Val(true) &&
+      totChol_Val(true) &&
+      HDL_Val(true) &&
+      LDL_Val(true) &&
+      (!diabFlds || (mcAlb_Val(true) && A1C_Val(true) && eGFR_Val(true)))
     ) {
       event.preventDefault();
       if ($("input[name = 'Diabetes']:checked").val() === "Yes") {
@@ -390,20 +380,44 @@ $(document).ready(function () {
   });
   $("input[name='Diabetes']").change(function () {
     $("#diabMark").tooltip("hide");
+    var $subFieldsContainer = $("#diabetesSubFields");
+    var $subInputs = $subFieldsContainer.find('input[type="radio"]');
     if ($("input[name='Diabetes']:checked").val() === "Yes") {
       $("#diabMark").addClass("btn-selected");
       $("#diabYGlyph").show();
       $("#diabNGlyph").hide();
       $("#diabMark1").removeClass("btn-selected");
       $(".diabetesFields").show();
-      $(".diabetesFields").attr("required", "");
+      //add required attribute in for currently take ins, other meds, sulfonylurea
+      $subInputs.prop("required", true);
+
+      //$(".diabetesFields").attr("required", "");
     } else {
       $("#diabMark1").addClass("btn-selected");
       $("#diabNGlyph").show();
       $("#diabYGlyph").hide();
       $("#diabMark").removeClass("btn-selected");
+      $subInputs.prop("checked", false);
+      $("#insu").removeClass("active");
+      $("#insu").find(".glyphicon").hide();
+      // $("#insMark").css("background-color", "#3c8579");
+      //$("#insMark1").css("background-color", "#3c8579");
+      $("#otherDiaMed").removeClass("active");
+      $("#otherDiaMed").find(".glyphicon").hide();
+      //$("#othmedMark").css("background-color", "#3c8579");
+      //$("#othmedMark1").css("background-color", "#3c8579");
+      $("#sulf").removeClass("active");
+      $("#sulf").find(".glyphicon").hide();
+      /*$("#sulfMark, #sulfMark1").css({
+        "background-color": "#3c8579",
+        "border-color": "",
+        color: "",
+      });*/
+      $(".diabetesFields").closest("label").removeClass("btn-selected");
+      //$("#sulfYGlyph").css("background-color", "#3c8579");
+      //$("#sulfNGlyph").css("background-color", "#3c8579");
       $(".diabetesFields").hide();
-      $(".diabetesFields").removeAttr("required");
+      $(".diabetesFields").prop("required", false);
     }
     $("#Smoker").focus();
   });
@@ -716,61 +730,84 @@ function LDL_Val(finalChk) {
     $("#LDL").removeClass("invalid").addClass("valid");
     $("#myForm input").prop("disabled", false);
     $("#myForm button").prop("disabled", false);
+    if ($("input[name='Diabetes']:checked").val() === "Yes") {
+      $("#eGFR").focus();
+    }
     return true;
   }
 }
 
 function mcAlb_Val(finalChk) {
   var input = $("#mcAlb");
-  if (input.val() === "" && !finalChk) {
-    mcAlbFirst = false;
-    return false;
-  }
-  if (parseFloat(input.val()) < 0 || parseFloat(input.val()) > 400) {
-    $("#mcAlb").tooltip("show");
-    $("#mcAlb").removeClass("valid").addClass("invalid");
-    $("#mcAlb").focus();
-    return false;
-  } else {
+  var raw = input.val().trim();
+
+  // blank is allowed; average value will be used
+  if (raw === "") {
     $("#mcAlb").tooltip("hide");
-    $("#mcAlb").removeClass("invalid").addClass("valid");
+    input.removeClass("invalid");
     return true;
   }
+
+  var value = parseFloat(raw);
+
+  if (isNaN(value) || value < 0 || value > 400) {
+    $("#mcAlb").tooltip("show");
+    input.removeClass("valid").addClass("invalid");
+    input.focus();
+    return false;
+  }
+
+  $("#mcAlb").tooltip("hide");
+  input.removeClass("invalid").addClass("valid");
+  return true;
 }
 
 function A1C_Val(finalChk) {
   var input = $("#A1C");
-  if (input.val() === "" && !finalChk) {
-    A1CFirst = false;
+  var raw = input.val().trim();
+
+  // blank is allowed; average value will be used
+  if (raw === "") {
+    $("#A1C").tooltip("hide");
+    input.removeClass("invalid");
+    return true;
+  }
+
+  var value = parseFloat(raw);
+
+  if (isNaN(value) || value < 1 || value > 100) {
+    $("#A1C").tooltip("show");
+    input.removeClass("valid").addClass("invalid");
+    input.focus();
     return false;
   }
 
-  if (parseFloat(input.val()) < 1 || parseFloat(input.val()) > 100) {
-    $("#A1C").tooltip("show");
-    $("#A1C").removeClass("valid").addClass("invalid");
-    $("#A1C").focus();
-    return false;
-  } else {
-    $("#A1C").tooltip("hide");
-    $("#A1C").removeClass("invalid").addClass("valid");
-    return true;
-  }
+  $("#A1C").tooltip("hide");
+  input.removeClass("invalid").addClass("valid");
+  return true;
 }
 
 function eGFR_Val(finalChk) {
   var input = $("#eGFR");
-  if (input.val() === "" && !finalChk) {
-    eGFRFirst = false;
-    return false;
-  }
-  if (parseFloat(input.val()) < 1 || parseFloat(input.val()) > 210) {
-    $("#eGFR").tooltip("show");
-    $("#eGFR").removeClass("valid").addClass("invalid");
-    $("#eGFR").focus();
-    return false;
-  } else {
+  var raw = input.val().trim();
+
+  // blank is allowed; average value will be used
+  if (raw === "") {
     $("#eGFR").tooltip("hide");
-    $("#eGFR").removeClass("invalid").addClass("valid");
+    input.removeClass("invalid");
     return true;
   }
+
+  var value = parseFloat(raw);
+
+  if (isNaN(value) || value < 1 || value > 210) {
+    $("#eGFR").tooltip("show");
+    input.removeClass("valid").addClass("invalid");
+    input.focus();
+    return false;
+  }
+
+  $("#eGFR").tooltip("hide");
+  input.removeClass("invalid").addClass("valid");
+  return true;
 }

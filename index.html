@@ -137,7 +137,7 @@
                                     <label class = "topLabel">Systolic Blood Pressure (mm Hg)</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn text-input">
-                                        <input type = "text" id = "BP_Sys" size = "4" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required/>
+                                        <input type = "text" id = "BP_Sys" size = "4" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
                                     </label>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                                     <label class = "topLabel">Diastolic Blood Pressure (mm Hg)</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn text-input">
-                                        <input type = "text" id = "BP_Dia" size = "4" maxlength = "3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required/>
+                                        <input type = "text" id = "BP_Dia" size = "4" maxlength = "3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
                                     </label>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
                                     <label class = "topLabel1">Total Cholesterol<br/>(mg/dL)</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn text-input">
-                                        <input type = "text" id = "TotChol" required size = "4" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
+                                        <input type = "text" id = "TotChol"  size = "4" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
                                     </label>
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
                                     <label class = "topLabel1">HDL Cholesterol<br/>(mg/dL)</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn text-input">
-                                        <input type = "text" id = "HDL" size = "2" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  required/>
+                                        <input type = "text" id = "HDL" size = "2" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  />
                                     </label>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
                                     <label class = "topLabel1">LDL Cholesterol<br/>(mg/dl)</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn text-input">
-                                        <input type = "text" id = "LDL" size = "4" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  required/>
+                                        <input type = "text" id = "LDL" size = "4" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  />
                                     </label>
                                 </div>
                             </div>
@@ -194,44 +194,44 @@
                                 <div class="btn-group colors" data-toggle="buttons" id ="insu" >
                                     <label class = "topLabel"><br/>Do you currently<br/> take insulin?</label>
                                     <div style="clear: both;"></div>
-                                    <label class="btn btn-primary btn-sm" id = "insMark" id = "diab1"> 
+                                    <label class="btn btn-primary btn-sm " id = "insMark" id = "diab1"> 
                                         <span class = "glyphicon glyphicon-check" id = "insYGlyph" style="display:none"></span>
-                                        <input type="radio" name="Insulin" value="Yes"  class ="diabetesFields" > Yes
+                                        <input type="radio" name="Insulin" value="Yes" required class ="diabetesFields diabetesSubFields"  > Yes
                                     </label>
-                                    <label class="btn btn-primary btn-sm" id = "insMark1">
+                                    <label class="btn btn-primary btn-sm " id = "insMark1">
                                         <span class = "glyphicon glyphicon-check" id = "insNGlyph" style="display:none"></span>
-                                        <input type="radio" name="Insulin" value="No"  class ="diabetesFields" > No
+                                        <input type="radio" name="Insulin" value="No" required class ="diabetesFields diabetesSubFields"  > No
                                     </label>
                                 </div>
                             </div>
-                             <div class ="col-sm-3 col-med-4 col-lg-4">
+                            <div class ="col-sm-3 col-med-4 col-lg-4">
                                 <div class="btn-group colors" data-toggle="buttons" id ="otherDiaMed" >
                                     <label class = "topLabel">Do you currently<br/> take other non-insulin<br/> diabetic oral medications?</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn btn-primary btn-sm" id = "othmedMark" id = "othmed"> 
                                         <span class = "glyphicon glyphicon-check" id = "omYGlyph" style="display:none"></span>
-                                        <input type="radio" name="OtherDMeds" value="Yes"  class ="diabetesFields"> Yes
+                                        <input type="radio" name="OtherDMeds" value="Yes"  class ="diabetesFields diabetesSubFields" required> Yes
                                     </label>
-                                    <label class="btn btn-primary btn-sm" id = "othmedMark1">
+                                    <label class="btn btn-primary btn-sm diabetesSubFields" id = "othmedMark1">
                                         <span class = "glyphicon glyphicon-check" id = "omNGlyph" style="display:none"></span>
-                                        <input type="radio" name="OtherDMeds" value="No"  class ="diabetesFields" > No
+                                        <input type="radio" name="OtherDMeds" value="No"  class ="diabetesFields diabetesSubFields" required> No
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <br/>
                        <div class ="row diabetesFields">
-                                 <div class ="col-sm-3 col-med-4 col-lg-4">
+                                 <div class ="col-sm-3 col-med-4 col-lg-4 diabetesSubFields">
                                 <div class="btn-group colors" data-toggle="buttons" id ="sulf" >
                                     <label class = "topLabel">Sulfonylurea</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn btn-primary btn-sm" id = "sulfMark" id = "sulfonyl">
                                         <span class = "glyphicon glyphicon-check" id = "sulfYGlyph" style="display:none"></span>
-                                        <input type="radio" name="SulfonlyUrea" value="Yes"  class ="diabetesFields" > Yes
+                                        <input type="radio" name="SulfonlyUrea" value="Yes"  class ="diabetesFields " required> Yes
                                     </label>
                                     <label class="btn btn-primary btn-sm" id = "sulfMark1">
                                         <span class = "glyphicon glyphicon-check" id = "sulfNGlyph" style="display:none"></span>
-                                        <input type="radio" name="SulfonlyUrea" value="No"  class ="diabetesFields" > No
+                                        <input type="radio" name="SulfonlyUrea" value="No"  class ="diabetesFields" required> No
                                     </label>
                                 </div>
                             </div>
@@ -241,7 +241,7 @@
                                     <label class = "topLabel1">Micro Albumin<br/>(mg/dL)</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn text-input">
-                                        <input type = "text" id = "mcAlb"  size = "4" maxlength ="6" oninput="this.value=this.value.replace(/[^0-9.]/g,'');" class ="diabetesFields" />
+                                        <input type = "text" id = "mcAlb"  size = "4" maxlength ="6" oninput="this.value=this.value.replace(/[^0-9.]/g,'');" class ="diabetesFields"  />
                                     </label>
                                 </div>
                             </div>
@@ -292,7 +292,7 @@
 <br/><br/>
                         Funded by VA Office of Research & Development (CX001025)</div>
                 </div>    
-                <div class ="Vfooter">Version 1.1  Last updated: 02/03/2022</div>
+                <div class ="Vfooter">Version 2.0  Last updated: 06/2026</div>
             </div>
         </form>
     </body>
